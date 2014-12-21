@@ -1,0 +1,18 @@
+{
+  "name": "Asana JSON",
+  "version": "0.0.1",
+  "homepage": "https://samstrasser.github.io",
+  "authors": [
+    "Sam Strasser <sam.strasser@gmail.com>"
+  ],
+  "description": "Manipulate Asana JSON",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "bower_components"
+  ],
+  "dependencies": {
+    "react": "~0.12.2"
+  }
+}
