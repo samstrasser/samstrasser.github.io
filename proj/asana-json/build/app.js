@@ -43,20 +43,30 @@ var MainApp = React.createClass({displayName: "MainApp",
 });
 
 var TaskSection = React.createClass({displayName: "TaskSection",
+  getInitialState: function() {
+    return { expanded: false }
+  },
+  
+  handleClick: function() {
+    this.setState({ expanded: !this.state.expanded })
+  },
+  
   render: function() {
     return (
-      React.createElement("div", null, 
-        React.createElement("h5", null, this.props.name), 
-        React.createElement("ul", null, 
-          this.props.tasks.map(function(task) {
-            return (
-              React.createElement(Task, {
-                key: task.id, 
-                task: task}
-                )
-            )
-          })
-        )
+      React.createElement("div", {className: "section", onClick: this.handleClick}, 
+        React.createElement("h5", null, this.props.name, " (", this.props.tasks.length, ")"), 
+        this.state.expanded && 
+          React.createElement("ul", null, 
+            this.props.tasks.map(function(task) {
+              return (
+                React.createElement(Task, {
+                  key: task.id, 
+                  task: task}
+                  )
+              )
+            })
+          )
+        
       )
     );
   }

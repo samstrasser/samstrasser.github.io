@@ -43,20 +43,30 @@ var MainApp = React.createClass({
 });
 
 var TaskSection = React.createClass({
+  getInitialState: function() {
+    return { expanded: false }
+  },
+  
+  handleClick: function() {
+    this.setState({ expanded: !this.state.expanded })
+  },
+  
   render: function() {
     return (
-      <div>
-        <h5>{this.props.name}</h5>
-        <ul>
-          {this.props.tasks.map(function(task) {
-            return (
-              <Task
-                key={task.id}
-                task={task}
-                />
-            )
-          })}
-        </ul>
+      <div className="section" onClick={this.handleClick}>
+        <h5>{this.props.name} ({this.props.tasks.length})</h5>
+        {this.state.expanded && 
+          <ul>
+            {this.props.tasks.map(function(task) {
+              return (
+                <Task
+                  key={task.id}
+                  task={task}
+                  />
+              )
+            })}
+          </ul>
+        }
       </div>
     );
   }
