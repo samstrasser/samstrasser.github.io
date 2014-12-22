@@ -1,24 +1,76 @@
 var MainApp = React.createClass({
   tasksBySection: function(tasks) {
-    return tasks.filter(function(task) {
+    var sections = [];
+    var currSection = {};
+    tasks.filter(function(task) {
+      // Completely ignore empty or completed
       return !task.completed && task.name != '';
-    });
+    }).forEach(function(task) {
+      if (task.name[task.name.length-1] == ':') {
+        // this is a section label
+        if (currSection.name) sections.push(currSection);
+        currSection = {
+          id: task.id,
+          name: task.name,
+          tasks: []
+        };
+      } else { 
+        // this is a regular task
+        currSection.tasks.push(task);
+      }
+    })
+    
+    return sections;
   },
   
   render: function() {
-    var tasks = this.tasksBySection(this.props.tasks);
+    var sections = this.tasksBySection(this.props.tasks);
     return (
-      <ul>
-        {tasks.map(function(task) {
-          var classes = task.name[task.name.length-1] == ':' ? 'section' : '';
+      <div>
+        {sections.map(function(section) {
           return (
-            <li className={classes} key={task.id}>{task.name}</li>
-          );
+            <TaskSection 
+              key={section.id}
+              name={section.name} 
+              tasks={section.tasks} 
+              />
+            
+          )
         })}
-      </ul>
+      </div>
     )
   }
 });
+
+var TaskSection = React.createClass({
+  render: function() {
+    return (
+      <div>
+        <h5>{this.props.name}</h5>
+        <ul>
+          {this.props.tasks.map(function(task) {
+            return (
+              <Task
+                key={task.id}
+                task={task}
+                />
+            )
+          })}
+        </ul>
+      </div>
+    );
+  }
+});
+
+var Task = React.createClass({
+  render: function() {
+    var task = this.props.task;
+    return (
+      <li key={task.id}>{task.name}</li>
+    )
+  }
+});
+    
 React.render(
   <MainApp tasks={devData.data} />,
   document.getElementById('content')
