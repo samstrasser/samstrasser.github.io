@@ -1,7 +1,6 @@
 var MainApp = React.createClass({displayName: "MainApp",
   getInitialState: function() { 
     return { 
-      inputExpanded: true,
       tasks: [ ] 
     };
   },
@@ -30,33 +29,19 @@ var MainApp = React.createClass({displayName: "MainApp",
     return sections;
   },
   
-  handleDataChanged: function(e) {
+  handleDataChanged: function(data) {
     this.setState({ 
-      inputExpanded: false,
-      tasks: JSON.parse(e.target.value) 
+      tasks: data
     });
   },
-  
-  handleFocus: function() {
-    // TODO: select all
-    this.setState({ 
-      inputExpanded: true
-    });
-  },
-  
+
   render: function() {
     var sections = this.tasksBySection(this.state.tasks);
     return (
       React.createElement("div", null, 
-        React.createElement("textarea", {
-          placeholder: "Copy and paste JSON here", 
-          onBlur: this.handleDataChanged, 
-          onFocus: this.handleFocus, 
-          rows: this.state.inputExpanded ? 10 : 1, 
-          defaultValue: JSON.stringify(devData.data)
-          }), 
+        React.createElement(InputArea, {handleDataChanged: this.handleDataChanged}), 
 
-        React.createElement(DownloadLink, {sections: sections}), 
+        sections.length > 0 && React.createElement(DownloadLink, {sections: sections}), 
         
         sections.map(function(section) {
           return (
@@ -132,12 +117,53 @@ var DownloadLink = React.createClass({displayName: "DownloadLink",
     var href = "data:text/csv;base64," + encoded;
 
     return (
-      React.createElement("a", {download: "tasks.csv", href: href, className: "pull-right", title: "Download as CSV"}, 
+      React.createElement("a", {download: "tasks.csv", href: href, className: "download", title: "Download as CSV"}, 
         React.createElement("img", {src: "img/excel.png"}), " Download"
       )
     );
   }
-})
+});
+
+var InputArea = React.createClass({displayName: "InputArea",
+  getInitialState: function() {
+    return { inputExpanded: true };
+  },
+  
+  handleBlur: function(e) {
+    var raw = e.target.value;
+    var data;
+    try {
+      data = JSON.parse(raw);
+    } catch (e) { }
+    if (data != undefined) {
+      this.props.handleDataChanged(data);
+    }
+    
+    this.setState({
+      inputExpanded: false
+    });
+  },
+  
+  handleFocus: function(e) {
+    e.target.select();
+    this.setState({
+      inputExpanded: true
+    });
+  },
+  
+  render: function() {
+    return (
+      React.createElement("textarea", {
+        placeholder: "Copy and paste JSON here", 
+        onBlur: this.handleBlur, 
+        onFocus: this.handleFocus, 
+        rows: this.state.inputExpanded ? 10 : 1, 
+        defaultValue: JSON.stringify(devData.data)
+        })
+      
+    );
+  }
+});
     
 React.render(
   React.createElement(MainApp, null),

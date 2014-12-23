@@ -1,7 +1,6 @@
 var MainApp = React.createClass({
   getInitialState: function() { 
     return { 
-      inputExpanded: true,
       tasks: [ ] 
     };
   },
@@ -30,33 +29,19 @@ var MainApp = React.createClass({
     return sections;
   },
   
-  handleDataChanged: function(e) {
+  handleDataChanged: function(data) {
     this.setState({ 
-      inputExpanded: false,
-      tasks: JSON.parse(e.target.value) 
+      tasks: data
     });
   },
-  
-  handleFocus: function() {
-    // TODO: select all
-    this.setState({ 
-      inputExpanded: true
-    });
-  },
-  
+
   render: function() {
     var sections = this.tasksBySection(this.state.tasks);
     return (
       <div>
-        <textarea 
-          placeholder="Copy and paste JSON here"
-          onBlur={this.handleDataChanged} 
-          onFocus={this.handleFocus}
-          rows={this.state.inputExpanded ? 10 : 1}
-          defaultValue={JSON.stringify(devData.data)}
-          ></textarea>
+        <InputArea handleDataChanged={this.handleDataChanged} />
 
-        <DownloadLink sections={sections} />
+        {sections.length > 0 && <DownloadLink sections={sections} />}
         
         {sections.map(function(section) {
           return (
@@ -132,12 +117,53 @@ var DownloadLink = React.createClass({
     var href = "data:text/csv;base64," + encoded;
 
     return (
-      <a download="tasks.csv" href={href} className="pull-right" title="Download as CSV">
+      <a download="tasks.csv" href={href} className="download" title="Download as CSV">
         <img src="img/excel.png" /> Download
       </a>
     );
   }
-})
+});
+
+var InputArea = React.createClass({
+  getInitialState: function() {
+    return { inputExpanded: true };
+  },
+  
+  handleBlur: function(e) {
+    var raw = e.target.value;
+    var data;
+    try {
+      data = JSON.parse(raw);
+    } catch (e) { }
+    if (data != undefined) {
+      this.props.handleDataChanged(data);
+    }
+    
+    this.setState({
+      inputExpanded: false
+    });
+  },
+  
+  handleFocus: function(e) {
+    e.target.select();
+    this.setState({
+      inputExpanded: true
+    });
+  },
+  
+  render: function() {
+    return (
+      <textarea 
+        placeholder="Copy and paste JSON here"
+        onBlur={this.handleBlur} 
+        onFocus={this.handleFocus}
+        rows={this.state.inputExpanded ? 10 : 1}
+        defaultValue={JSON.stringify(devData.data)}
+        ></textarea>
+      
+    );
+  }
+});
     
 React.render(
   <MainApp />,

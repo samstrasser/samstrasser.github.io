@@ -5,6 +5,9 @@
 textarea {
   width:100%;
 }
-.pull-right {
-  float:right;
+
+.download {
+  position:fixed;
+  right:8px;
+  bottom:8px;
 }
