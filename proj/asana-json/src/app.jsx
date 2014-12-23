@@ -152,13 +152,17 @@ var InputArea = React.createClass({
   },
   
   render: function() {
+    var val = '';
+    if (typeof devData != 'undefined') {
+      val = JSON.stringify(devData.data);
+    }
     return (
       <textarea 
         placeholder="Copy and paste JSON here"
         onBlur={this.handleBlur} 
         onFocus={this.handleFocus}
         rows={this.state.inputExpanded ? 10 : 1}
-        defaultValue={JSON.stringify(devData.data)}
+        defaultValue={val}
         ></textarea>
       
     );
