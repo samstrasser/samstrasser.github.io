@@ -1,14 +1,14 @@
 var MainApp = React.createClass({displayName: "MainApp",
   getInitialState: function() { 
     return { 
-      tasks: [ ] 
+      rawData: { data: [ ] }
     };
   },
   
-  tasksBySection: function(tasks) {
+  tasksBySection: function(rawData) {
     var sections = [];
     var currSection = {};
-    tasks.filter(function(task) {
+    rawData.data.filter(function(task) {
       // Completely ignore empty or completed
       return !task.completed && task.name != '';
     }).forEach(function(task) {
@@ -31,12 +31,12 @@ var MainApp = React.createClass({displayName: "MainApp",
   
   handleDataChanged: function(data) {
     this.setState({ 
-      tasks: data
+      rawData: data
     });
   },
 
   render: function() {
-    var sections = this.tasksBySection(this.state.tasks);
+    var sections = this.tasksBySection(this.state.rawData);
     return (
       React.createElement("div", null, 
         React.createElement(InputArea, {handleDataChanged: this.handleDataChanged}), 
@@ -154,7 +154,7 @@ var InputArea = React.createClass({displayName: "InputArea",
   render: function() {
     var val = '';
     if (typeof devData != 'undefined') {
-      val = JSON.stringify(devData.data);
+      val = JSON.stringify(devData);
     }
     return (
       React.createElement("textarea", {

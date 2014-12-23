@@ -33,6 +33,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-targethtml');
   grunt.loadNpmTasks('grunt-react');
   
-  grunt.registerTask('default', ['watch']);
+  grunt.registerTask('default', ['targethtml','react','watch']);
   
 };
