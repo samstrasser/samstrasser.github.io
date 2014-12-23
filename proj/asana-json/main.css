@@ -2,6 +2,9 @@
   cursor:pointer;
 }
 
+textarea {
+  width:100%;
+}
 .pull-right {
   float:right;
 }

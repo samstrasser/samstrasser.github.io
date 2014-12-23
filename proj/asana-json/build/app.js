@@ -1,4 +1,11 @@
 var MainApp = React.createClass({displayName: "MainApp",
+  getInitialState: function() { 
+    return { 
+      inputExpanded: true,
+      tasks: [ ] 
+    };
+  },
+  
   tasksBySection: function(tasks) {
     var sections = [];
     var currSection = {};
@@ -23,10 +30,32 @@ var MainApp = React.createClass({displayName: "MainApp",
     return sections;
   },
   
+  handleDataChanged: function(e) {
+    this.setState({ 
+      inputExpanded: false,
+      tasks: JSON.parse(e.target.value) 
+    });
+  },
+  
+  handleFocus: function() {
+    // TODO: select all
+    this.setState({ 
+      inputExpanded: true
+    });
+  },
+  
   render: function() {
-    var sections = this.tasksBySection(this.props.tasks);
+    var sections = this.tasksBySection(this.state.tasks);
     return (
       React.createElement("div", null, 
+        React.createElement("textarea", {
+          placeholder: "Copy and paste JSON here", 
+          onBlur: this.handleDataChanged, 
+          onFocus: this.handleFocus, 
+          rows: this.state.inputExpanded ? 10 : 1, 
+          defaultValue: JSON.stringify(devData.data)
+          }), 
+
         React.createElement(DownloadLink, {sections: sections}), 
         
         sections.map(function(section) {
@@ -111,6 +140,6 @@ var DownloadLink = React.createClass({displayName: "DownloadLink",
 })
     
 React.render(
-  React.createElement(MainApp, {tasks: devData.data}),
+  React.createElement(MainApp, null),
   document.getElementById('content')
 );
