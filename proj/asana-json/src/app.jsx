@@ -27,6 +27,8 @@ var MainApp = React.createClass({
     var sections = this.tasksBySection(this.props.tasks);
     return (
       <div>
+        <DownloadLink sections={sections} />
+        
         {sections.map(function(section) {
           return (
             <TaskSection 
@@ -80,6 +82,33 @@ var Task = React.createClass({
     )
   }
 });
+
+var DownloadLink = React.createClass({
+  generateRows: function(sections) {
+    var rows = ['Funnel Step,Task,'];
+    sections.forEach(function(section) {
+      section.tasks.forEach(function(task) {
+        var row = [section.name, task.name].map(function(item) { 
+          return '"' + item + '"';
+        });
+        rows.push(row.join(','));
+      })
+    });
+    return rows;
+  },
+  
+  render: function() {
+    var rows = this.generateRows(this.props.sections);
+    var encoded = btoa(rows.join("\n"));
+    var href = "data:text/csv;base64," + encoded;
+
+    return (
+      <a download="tasks.csv" href={href} className="pull-right" title="Download as CSV">
+        <img src="img/excel.png" /> Download
+      </a>
+    );
+  }
+})
     
 React.render(
   <MainApp tasks={devData.data} />,
