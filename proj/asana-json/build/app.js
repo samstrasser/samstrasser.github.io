@@ -1,42 +1,16 @@
 var MainApp = React.createClass({displayName: "MainApp",
   getInitialState: function() { 
-    return { 
-      rawData: { data: [ ] }
-    };
+    return { sections: [] };
   },
-  
-  tasksBySection: function(rawData) {
-    var sections = [];
-    var currSection = {};
-    rawData.data.filter(function(task) {
-      // Completely ignore empty or completed
-      return !task.completed && task.name != '';
-    }).forEach(function(task) {
-      if (task.name[task.name.length-1] == ':') {
-        // this is a section label
-        if (currSection.name) sections.push(currSection);
-        currSection = {
-          id: task.id,
-          name: task.name,
-          tasks: []
-        };
-      } else { 
-        // this is a regular task
-        currSection.tasks.push(task);
-      }
-    })
-    
-    return sections;
-  },
-  
+
   handleDataChanged: function(data) {
     this.setState({ 
-      rawData: data
+      sections: data
     });
   },
 
   render: function() {
-    var sections = this.tasksBySection(this.state.rawData);
+    var sections = this.state.sections;
     return (
       React.createElement("div", null, 
         React.createElement(InputArea, {handleDataChanged: this.handleDataChanged}), 
@@ -129,6 +103,30 @@ var InputArea = React.createClass({displayName: "InputArea",
     return { inputExpanded: true };
   },
   
+  tasksBySection: function(rawData) {
+    var sections = [];
+    var currSection = {};
+    rawData.data.filter(function(task) {
+      // Completely ignore empty or completed
+      return !task.completed && task.name != '';
+    }).forEach(function(task) {
+      if (task.name[task.name.length-1] == ':') {
+        // this is a section label
+        if (currSection.name) sections.push(currSection);
+        currSection = {
+          id: task.id,
+          name: task.name,
+          tasks: []
+        };
+      } else { 
+        // this is a regular task
+        currSection.tasks.push(task);
+      }
+    })
+    
+    return sections;
+  },
+  
   handleBlur: function(e) {
     var raw = e.target.value;
     var data;
@@ -136,6 +134,7 @@ var InputArea = React.createClass({displayName: "InputArea",
       data = JSON.parse(raw);
     } catch (e) { }
     if (data != undefined) {
+      data = this.tasksBySection(data);
       this.props.handleDataChanged(data);
     }
     
