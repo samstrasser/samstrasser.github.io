@@ -4,16 +4,13 @@ var SectionViewBasic = React.createClass({
     var sections = this.props.sections;
     return (
       <div>
-        {sections.length > 0 && <DownloadLink sections={sections} />}
-    
         {sections.map(function(section) {
           return (
             <TaskSection 
-            key={section.id}
-            name={section.name} 
-            tasks={section.tasks} 
-            />
-            
+              key={section.id}
+              name={section.name} 
+              tasks={section.tasks} 
+              />
           )
         })}
       </div>
@@ -34,21 +31,21 @@ var TaskSection = React.createClass({
     return (
       <div className="section" onClick={this.handleClick}>
       <h5>{this.props.name} ({this.props.tasks.length})</h5>
-    {this.state.expanded && 
-      <ul>
-    {this.props.tasks.map(function(task) {
-      return (
-        <Task
-        key={task.id}
-        task={task}
-        />
-      )
-    })}
-    </ul>
+        {this.state.expanded && 
+          <ul>
+            {this.props.tasks.map(function(task) {
+              return (
+                <Task
+                  key={task.id}
+                  task={task}
+                  />
+              )
+            })}
+          </ul>
+        }
+      </div>
+    );
   }
-  </div>
-);
-}
 });
 
 var Task = React.createClass({

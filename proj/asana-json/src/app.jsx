@@ -10,11 +10,18 @@ var MainApp = React.createClass({
   },
   
   render: function() {
+    var sections = this.state.sections;
     return (
       <div>
         <InputArea handleDataChanged={this.handleDataChanged} />
         
-        <SectionViewBasic sections={this.state.sections} />
+        <SectionViewFunnels sections={sections} />
+        
+        {/* <SectionViewBasic sections={this.state.sections} /> */}
+        
+        {sections.length > 0 && <DownloadLink sections={sections} />}
+      
+      
       </div>
     );
   }
