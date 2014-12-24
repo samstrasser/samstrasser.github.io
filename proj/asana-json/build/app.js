@@ -27,8 +27,12 @@ var MainApp = React.createClass({displayName: "MainApp",
   }
   
 });
-    
-React.render(
-  React.createElement(MainApp, null),
-  document.getElementById('content')
-);
+
+google.load("visualization", "1", {packages:["corechart"]});
+google.setOnLoadCallback(function() {
+  React.render(
+    React.createElement(MainApp, null),
+    document.getElementById('content')
+  );
+});
+
