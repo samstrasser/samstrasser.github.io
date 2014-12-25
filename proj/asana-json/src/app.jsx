@@ -1,7 +1,7 @@
 var MainApp = React.createClass({
   getInitialState: function() { 
     return { 
-      activeView: 'funnels',
+      activeView: 'basic',
       sections: [] 
     };
   },
