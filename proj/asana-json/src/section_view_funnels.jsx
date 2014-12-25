@@ -1,5 +1,7 @@
 var SectionViewFunnels = React.createClass({
   componentDidUpdate: function() {
+    return; 
+    
     var sections = this.props.sections;
     var headers = ['Section', 'Num Tasks'];
     var rows = sections.map(function(section) {
@@ -20,6 +22,6 @@ var SectionViewFunnels = React.createClass({
   },
   
   render: function() {
-    return <div className="chart"></div>
+    return <div className="chart">Chart</div>
   }
 });

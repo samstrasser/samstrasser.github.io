@@ -1,6 +1,15 @@
 var MainApp = React.createClass({
   getInitialState: function() { 
-    return { sections: [] };
+    return { 
+      activeView: 'funnels',
+      sections: [] 
+    };
+  },
+  
+  handleNav: function(dest) {
+    this.setState({
+      activeView: dest
+    });
   },
 
   handleDataChanged: function(data) {
@@ -11,15 +20,18 @@ var MainApp = React.createClass({
   
   render: function() {
     var sections = this.state.sections;
+    var viewBasic = this.state.activeView === 'basic';
+    var ActiveView = viewBasic ? SectionViewBasic : SectionViewFunnels;
     return (
       <div>
-        <InputArea handleDataChanged={this.handleDataChanged} />
+        <AppNav sections={sections} handleNav={this.handleNav}/>
         
-        <SectionViewFunnels sections={sections} />
+        <div className="main">
         
-        {/* <SectionViewBasic sections={this.state.sections} /> */}
-        
-        {sections.length > 0 && <DownloadLink sections={sections} />}
+          <InputArea handleDataChanged={this.handleDataChanged} />
+          
+          <ActiveView sections={sections} />
+        </div>
       
       
       </div>
@@ -28,11 +40,11 @@ var MainApp = React.createClass({
   
 });
 
-google.load("visualization", "1", {packages:["corechart"]});
-google.setOnLoadCallback(function() {
+// google.load("visualization", "1", {packages:["corechart"]});
+// google.setOnLoadCallback(function() {
   React.render(
     <MainApp />,
     document.getElementById('content')
   );
-});
+// });
 

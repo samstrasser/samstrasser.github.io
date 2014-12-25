@@ -1,3 +1,21 @@
+.nav {
+  position:fixed;
+  right: 8px;
+  width:10%;
+}
+
+.nav button {
+  display:block;
+  width:100%;
+  margin-bottom:.5em;
+}
+
+
+.main {
+  margin-right: 12%;
+}
+
+
 .section {
   cursor:pointer;
 }
@@ -9,10 +27,4 @@
 
 textarea {
   width:100%;
-}
-
-.download {
-  position:fixed;
-  right:8px;
-  bottom:8px;
 }
