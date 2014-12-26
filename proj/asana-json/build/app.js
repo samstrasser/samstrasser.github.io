@@ -1,7 +1,7 @@
 var MainApp = React.createClass({displayName: "MainApp",
   getInitialState: function() { 
     return { 
-      activeView: 'basic',
+      activeView: 'funnels',
       sections: [],
       tags: []
     };
@@ -47,11 +47,8 @@ var MainApp = React.createClass({displayName: "MainApp",
   
 });
 
-// google.load("visualization", "1", {packages:["corechart"]});
-// google.setOnLoadCallback(function() {
   React.render(
     React.createElement(MainApp, null),
     document.getElementById('content')
   );
-// });
 

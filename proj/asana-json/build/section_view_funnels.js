@@ -1,6 +1,32 @@
 var SectionViewFunnels = React.createClass({displayName: "SectionViewFunnels",
+  getInitialState: function() {
+    return { googleLibLoaded: false }
+  },
+  
+  render: function() {
+    return (
+      React.createElement("div", {className: "chart"}, 
+        !this.state.googleLibLoaded && 
+          React.createElement("div", null, 
+            "\"Loading chart library...\""
+          )
+        
+      )
+    )
+  },
+
+  componentDidMount: function() {
+    // We're in the DOM so start setting up Google vis library
+    this.loadGoogleVis();
+  },
+  
   componentDidUpdate: function() {
     var sections = this.props.sections;
+
+    if (!this.state.googleLibLoaded || sections.length === 0) {
+      return;
+    }
+
     var headers = ['Section', 'Num Tasks'];
     var rows = sections.map(function(section) {
       return [section.name, section.tasks.length];
@@ -19,7 +45,20 @@ var SectionViewFunnels = React.createClass({displayName: "SectionViewFunnels",
     chart.draw(dataTable, options);
   },
   
-  render: function() {
-    return React.createElement("div", {className: "chart"}, "Chart")
+  
+  loadGoogleVis: function() {
+    // If google didn't load into the global namespace (e.g. we're offline), 
+    // don't try to load the visualization library
+    if (typeof google === 'undefined') return;
+    google.load("visualization", "1", {
+      packages:["corechart"],
+      callback: function() {
+        // this will be called immediately if the library has already loaded
+        this.setState({
+          googleLibLoaded: true
+        });
+      }.bind(this)
+    
+    });
   }
 });
