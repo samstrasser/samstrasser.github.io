@@ -28,3 +28,13 @@
 textarea {
   width:100%;
 }
+
+.sk-spinner-wave.sk-spinner {
+  width:300px;
+}
+  
+.sk-spinner-wave.sk-spinner div {
+  margin-left: 4px;
+  margin-right: 4px;
+  background-color: lightgray;
+}

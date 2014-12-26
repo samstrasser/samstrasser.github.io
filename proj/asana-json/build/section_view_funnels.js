@@ -7,8 +7,12 @@ var SectionViewFunnels = React.createClass({displayName: "SectionViewFunnels",
     return (
       React.createElement("div", {className: "chart"}, 
         !this.state.googleLibLoaded && 
-          React.createElement("div", null, 
-            "\"Loading chart library...\""
+          React.createElement("div", {className: "sk-spinner sk-spinner-wave"}, 
+            React.createElement("div", {className: "sk-rect1"}), 
+            React.createElement("div", {className: "sk-rect2"}), 
+            React.createElement("div", {className: "sk-rect3"}), 
+            React.createElement("div", {className: "sk-rect4"}), 
+            React.createElement("div", {className: "sk-rect5"})
           )
         
       )
