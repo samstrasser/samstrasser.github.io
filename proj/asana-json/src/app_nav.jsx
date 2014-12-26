@@ -8,8 +8,8 @@ var AppNav = React.createClass({
     var handleNav = this.props.handleNav;
     return (
       <div className="nav">
-        <button onClick={handleNav.bind(null, 'basic')}>Lists</button>
-        <button onClick={handleNav.bind(null, 'funnels')}>Graph</button>
+        <button className="btn btn-default" onClick={handleNav.bind(null, 'basic')}>Lists</button>
+        <button className="btn btn-default" onClick={handleNav.bind(null, 'funnels')}>Graph</button>
         
         <DownloadLink sections={sections} />
 

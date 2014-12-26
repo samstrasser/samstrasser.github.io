@@ -8,8 +8,8 @@ var AppNav = React.createClass({displayName: "AppNav",
     var handleNav = this.props.handleNav;
     return (
       React.createElement("div", {className: "nav"}, 
-        React.createElement("button", {onClick: handleNav.bind(null, 'basic')}, "Lists"), 
-        React.createElement("button", {onClick: handleNav.bind(null, 'funnels')}, "Graph"), 
+        React.createElement("button", {className: "btn btn-default", onClick: handleNav.bind(null, 'basic')}, "Lists"), 
+        React.createElement("button", {className: "btn btn-default", onClick: handleNav.bind(null, 'funnels')}, "Graph"), 
         
         React.createElement(DownloadLink, {sections: sections}), 
 

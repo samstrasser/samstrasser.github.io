@@ -18,7 +18,11 @@ var DownloadLink = React.createClass({
     var href = "data:text/csv;base64," + encoded;
     
     return (
-      <a download="tasks.csv" href={href} className="download" title="Download as CSV">
+      <a className="btn btn-default download" 
+        download="tasks.csv" 
+        href={href} 
+        title="Download as CSV"
+        >
       <img src="img/excel.png" /> Download
       </a>
     );

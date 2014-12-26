@@ -18,7 +18,11 @@ var DownloadLink = React.createClass({displayName: "DownloadLink",
     var href = "data:text/csv;base64," + encoded;
     
     return (
-      React.createElement("a", {download: "tasks.csv", href: href, className: "download", title: "Download as CSV"}, 
+      React.createElement("a", {className: "btn btn-default download", 
+        download: "tasks.csv", 
+        href: href, 
+        title: "Download as CSV"
+        }, 
       React.createElement("img", {src: "img/excel.png"}), " Download"
       )
     );
