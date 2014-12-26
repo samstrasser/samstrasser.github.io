@@ -2,7 +2,8 @@ var MainApp = React.createClass({
   getInitialState: function() { 
     return { 
       activeView: 'basic',
-      sections: [] 
+      sections: [],
+      tags: []
     };
   },
   
@@ -11,23 +12,29 @@ var MainApp = React.createClass({
       activeView: dest
     });
   },
+  
+  handleFilter: function() {
+    
+  },
 
   handleDataChanged: function(data) {
-    this.setState({ 
-      sections: data
-    });
+    this.setState(data);
   },
   
   render: function() {
     var sections = this.state.sections;
+    var tags = this.state.tags;
     var viewBasic = this.state.activeView === 'basic';
     var ActiveView = viewBasic ? SectionViewBasic : SectionViewFunnels;
     return (
       <div>
-        <AppNav sections={sections} handleNav={this.handleNav}/>
+        {sections.length > 0 &&
+          <AppNav 
+            sections={sections} handleNav={this.handleNav}
+            tags={tags} handleFilter={this.handleFilter}
+            />}
         
         <div className="main">
-        
           <InputArea handleDataChanged={this.handleDataChanged} />
           
           <ActiveView sections={sections} />

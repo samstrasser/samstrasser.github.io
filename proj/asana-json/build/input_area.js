@@ -4,6 +4,7 @@ var InputArea = React.createClass({displayName: "InputArea",
   },
   
   tasksBySection: function(rawData) {
+    var tags = {};
     var sections = [];
     var currSection = {};
     rawData.data.filter(function(task) {
@@ -21,10 +22,16 @@ var InputArea = React.createClass({displayName: "InputArea",
       } else { 
         // this is a regular task
         currSection.tasks.push(task);
+        task.tags.forEach(function(tag) {
+          tags[tag.id] = tag.name;
+        });
       }
     })
     
-    return sections;
+    return {
+      sections: sections,
+      tags: tags
+    };
   },
   
   handleBlur: function(e) {
