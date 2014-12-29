@@ -2,6 +2,7 @@ var SectionViewBasic = React.createClass({displayName: "SectionViewBasic",
   
   render: function() {
     var sections = this.props.sections;
+    var tags = this.props.tags;
     return (
       React.createElement("div", null, 
         sections.map(function(section) {
@@ -9,7 +10,8 @@ var SectionViewBasic = React.createClass({displayName: "SectionViewBasic",
             React.createElement(TaskSection, {
               key: section.id, 
               name: section.name, 
-              tasks: section.tasks}
+              tasks: section.tasks, 
+              tags: tags}
               )
           )
         })
@@ -28,12 +30,29 @@ var TaskSection = React.createClass({displayName: "TaskSection",
   },
   
   render: function() {
+    var tags = this.props.tags;
+    var tasks = this.props.tasks;
+    
+    var shouldFilter = Object.keys(tags).some(function(key) {
+      return tags[key].active;
+    });
+    
+    if (shouldFilter) {
+      tasks = tasks.filter(function(task) {
+        return task.tags.some(function(tag){
+          console.log(task.name, tag.name, tag.active);
+          return tags[tag.id].active === true
+        });
+      });
+    }
+    
+    
     return (
       React.createElement("div", {className: "section", onClick: this.handleClick}, 
-      React.createElement("h5", null, this.props.name, " (", this.props.tasks.length, ")"), 
+      React.createElement("div", null, this.props.name, " ", React.createElement("span", {className: "badge"}, tasks.length)), 
         this.state.expanded && 
           React.createElement("ul", null, 
-            this.props.tasks.map(function(task) {
+            tasks.map(function(task) {
               return (
                 React.createElement(Task, {
                   key: task.id, 

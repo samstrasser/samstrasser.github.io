@@ -3,7 +3,7 @@ var MainApp = React.createClass({displayName: "MainApp",
     return { 
       activeView: 'funnels',
       sections: [],
-      tags: []
+      tags: {}
     };
   },
   
@@ -13,8 +13,12 @@ var MainApp = React.createClass({displayName: "MainApp",
     });
   },
   
-  handleFilter: function() {
-    
+  handleFilter: function(tag) {
+    var tags = this.state.tags;
+    tags[tag.id].active = !tags[tag.id].active;
+    this.setState({
+      tags: tags
+    })
   },
 
   handleDataChanged: function(data) {
@@ -37,7 +41,7 @@ var MainApp = React.createClass({displayName: "MainApp",
         React.createElement("div", {className: "main"}, 
           React.createElement(InputArea, {handleDataChanged: this.handleDataChanged}), 
           
-          React.createElement(ActiveView, {sections: sections})
+          React.createElement(ActiveView, {sections: sections, tags: tags})
         )
       
       

@@ -1,25 +1,36 @@
 var AppNav = React.createClass({
   render: function() {
     var sections = this.props.sections;
-    var tags = [];
-    for (tag in this.props.tags) {
-      tags.push(this.props.tags[tag]);
-    }
+    var tags = this.props.tags;
     var handleNav = this.props.handleNav;
+    var handleFilter = this.props.handleFilter;
+
     return (
       <div className="nav">
-        <button className="btn btn-default" onClick={handleNav.bind(null, 'basic')}>Lists</button>
-        <button className="btn btn-default" onClick={handleNav.bind(null, 'funnels')}>Graph</button>
+        <button className="btn btn-default" 
+          onClick={handleNav.bind(null, 'basic')}>Lists</button>
+        <button className="btn btn-default" 
+          onClick={handleNav.bind(null, 'funnels')}>Graph</button>
         
         <DownloadLink sections={sections} />
 
         <hr />
         
-        <ol>
-          {tags.map(function(tag){
-            return <li>{tag}</li>;
-          })}
-        </ol>
+      {/* 
+        Filters
+
+        {Object.keys(tags).map(function(k){
+          var tag = tags[k];
+          var classes = 'btn btn-default';
+          if (tag.active) {
+            classes += ' active';
+          }
+          return (
+            <button className={classes} key={tag.id}
+              onClick={handleFilter.bind(null, tag)}>{tag.name}</button>
+          )
+        })}
+      */}
       </div>
     )
   }

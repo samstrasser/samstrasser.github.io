@@ -23,7 +23,7 @@ var InputArea = React.createClass({
         // this is a regular task
         currSection.tasks.push(task);
         task.tags.forEach(function(tag) {
-          tags[tag.id] = tag.name;
+          tags[tag.id] = tag;
         });
       }
     })

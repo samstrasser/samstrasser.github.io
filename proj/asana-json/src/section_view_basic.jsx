@@ -2,6 +2,7 @@ var SectionViewBasic = React.createClass({
   
   render: function() {
     var sections = this.props.sections;
+    var tags = this.props.tags;
     return (
       <div>
         {sections.map(function(section) {
@@ -10,6 +11,7 @@ var SectionViewBasic = React.createClass({
               key={section.id}
               name={section.name} 
               tasks={section.tasks} 
+              tags={tags}
               />
           )
         })}
@@ -28,12 +30,29 @@ var TaskSection = React.createClass({
   },
   
   render: function() {
+    var tags = this.props.tags;
+    var tasks = this.props.tasks;
+    
+    var shouldFilter = Object.keys(tags).some(function(key) {
+      return tags[key].active;
+    });
+    
+    if (shouldFilter) {
+      tasks = tasks.filter(function(task) {
+        return task.tags.some(function(tag){
+          console.log(task.name, tag.name, tag.active);
+          return tags[tag.id].active === true
+        });
+      });
+    }
+    
+    
     return (
       <div className="section" onClick={this.handleClick}>
-      <h5>{this.props.name} ({this.props.tasks.length})</h5>
+      <div>{this.props.name} <span className="badge">{tasks.length}</span></div>
         {this.state.expanded && 
           <ul>
-            {this.props.tasks.map(function(task) {
+            {tasks.map(function(task) {
               return (
                 <Task
                   key={task.id}
