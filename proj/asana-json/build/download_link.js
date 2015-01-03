@@ -1,11 +1,11 @@
 var DownloadLink = React.createClass({displayName: "DownloadLink",
   generateRows: function(sections) {
-    var rows = ['Funnel Step,Task,'];
+    var rows = ['Funnel Step,Task,Tags,'];
     sections.forEach(function(section) {
       section.tasks.forEach(function(task) {
         var row = [section.name, task.name].map(function(item) { 
           return '"' + item + '"';
-        });
+        }).concat(task.tags.map(function(t) { return t.name; }).join(';'));
         rows.push(row.join(','));
       })
     });
