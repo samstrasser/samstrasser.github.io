@@ -26,7 +26,10 @@ var InputArea = React.createClass({
           tags[tag.id] = tag;
         });
       }
-    })
+    });
+    // TODO: write this like a real engineer
+    sections.push(currSection);
+    
     
     return {
       sections: sections,
