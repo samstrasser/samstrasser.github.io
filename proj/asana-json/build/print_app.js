@@ -36,7 +36,6 @@ var PrintableTasks = React.createClass({displayName: "PrintableTasks",
     return (
       React.createElement("ol", null, 
         tasks.map(function(task) {
-          console.log(task);
           var classes = 'printable ';
           if (task.name[task.name.length-1] == ':') {
             classes += 'section';
@@ -45,7 +44,9 @@ var PrintableTasks = React.createClass({displayName: "PrintableTasks",
           }
 
           return (
-            React.createElement("li", {contentEditable: "true", className: classes}, task.name)
+            React.createElement("li", {key: task.id, contentEditable: "true", className: classes}, 
+              task.name
+            )
           )
         })
       )

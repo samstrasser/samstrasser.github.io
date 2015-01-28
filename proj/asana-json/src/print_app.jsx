@@ -36,7 +36,6 @@ var PrintableTasks = React.createClass({
     return (
       <ol>
         {tasks.map(function(task) {
-          console.log(task);
           var classes = 'printable ';
           if (task.name[task.name.length-1] == ':') {
             classes += 'section';
@@ -45,7 +44,9 @@ var PrintableTasks = React.createClass({
           }
 
           return (
-            <li contentEditable="true" className={classes}>{task.name}</li>
+            <li key={task.id} contentEditable="true" className={classes}>
+              {task.name}
+            </li>
           )
         })}
       </ol>
