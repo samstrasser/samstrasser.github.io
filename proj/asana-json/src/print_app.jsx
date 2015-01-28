@@ -9,10 +9,16 @@ var PrintApp = React.createClass({
     this.setState({tasks: data});
   },
 
+  handleChangedTitle: function(e) {
+    document.title = e.target.innerHTML;
+  },
+
   render: function() {
     return (
       <div className="main">
-        <h1 contentEditable="true">Phase 2 Roadmap [or] Product Opportunities</h1>
+        <h1 contentEditable="true"
+          onInput={this.handleChangedTitle}
+          >Phase 2 Roadmap [or] Product Opportunities</h1>
         <InputArea
           handleDataChanged={this.handleDataChanged}
           />

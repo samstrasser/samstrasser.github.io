@@ -9,10 +9,16 @@ var PrintApp = React.createClass({displayName: "PrintApp",
     this.setState({tasks: data});
   },
 
+  handleChangedTitle: function(e) {
+    document.title = e.target.innerHTML;
+  },
+
   render: function() {
     return (
       React.createElement("div", {className: "main"}, 
-        React.createElement("h1", {contentEditable: "true"}, "Phase 2 Roadmap [or] Product Opportunities"), 
+        React.createElement("h1", {contentEditable: "true", 
+          onInput: this.handleChangedTitle
+          }, "Phase 2 Roadmap [or] Product Opportunities"), 
         React.createElement(InputArea, {
           handleDataChanged: this.handleDataChanged}
           ), 
