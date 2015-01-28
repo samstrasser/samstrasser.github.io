@@ -12,6 +12,7 @@ var PrintApp = React.createClass({
   render: function() {
     return (
       <div className="main">
+        <h1 contentEditable="true">Phase 2 Roadmap [or] Product Opportunities</h1>
         <InputArea
           handleDataChanged={this.handleDataChanged}
           />
