@@ -39,7 +39,7 @@ var PrintableTasks = React.createClass({
           }
 
           return (
-            <li className={classes}>{task.name}</li>
+            <li contentEditable="true" className={classes}>{task.name}</li>
           )
         })}
       </ol>

@@ -39,7 +39,7 @@ var PrintableTasks = React.createClass({displayName: "PrintableTasks",
           }
 
           return (
-            React.createElement("li", {className: classes}, task.name)
+            React.createElement("li", {contentEditable: "true", className: classes}, task.name)
           )
         })
       )
