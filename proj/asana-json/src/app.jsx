@@ -1,18 +1,18 @@
 var MainApp = React.createClass({
-  getInitialState: function() { 
-    return { 
+  getInitialState: function() {
+    return {
       activeView: 'funnels',
       sections: [],
       tags: {}
     };
   },
-  
+
   handleNav: function(dest) {
     this.setState({
       activeView: dest
     });
   },
-  
+
   handleFilter: function(tag) {
     var tags = this.state.tags;
     tags[tag.id].active = !tags[tag.id].active;
@@ -21,10 +21,44 @@ var MainApp = React.createClass({
     })
   },
 
-  handleDataChanged: function(data) {
-    this.setState(data);
+  tasksBySection: function(data) {
+    var tags = {};
+    var sections = [];
+    var currSection = {};
+    data.filter(function(task) {
+      // Completely ignore empty or completed
+      return !task.completed && task.name != '';
+    }).forEach(function(task) {
+      if (task.name[task.name.length-1] == ':') {
+        // this is a section label
+        if (currSection.name) sections.push(currSection);
+        currSection = {
+          id: task.id,
+          name: task.name,
+          tasks: []
+        };
+      } else {
+        // this is a regular task
+        currSection.tasks.push(task);
+        task.tags.forEach(function(tag) {
+          tags[tag.id] = tag;
+        });
+      }
+    });
+    // TODO: write this like a real engineer
+    sections.push(currSection);
+
+
+    return {
+      sections: sections,
+      tags: tags
+    };
   },
-  
+
+  handleDataChanged: function(data) {
+    this.setState(this.tasksBySection(data));
+  },
+
   render: function() {
     var sections = this.state.sections;
     var tags = this.state.tags;
@@ -33,26 +67,25 @@ var MainApp = React.createClass({
     return (
       <div>
         {sections.length > 0 &&
-          <AppNav 
+          <AppNav
             sections={sections} handleNav={this.handleNav}
             tags={tags} handleFilter={this.handleFilter}
             />}
-        
+
         <div className="main">
           <InputArea handleDataChanged={this.handleDataChanged} />
-          
+
           <ActiveView sections={sections} tags={tags} />
         </div>
-      
-      
+
+
       </div>
     );
   }
-  
+
 });
 
   React.render(
     <MainApp />,
     document.getElementById('content')
   );
-

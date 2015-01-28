@@ -2,41 +2,14 @@ var InputArea = React.createClass({
   getInitialState: function() {
     return { inputExpanded: true };
   },
-  
-  tasksBySection: function(rawData) {
-    var tags = {};
-    var sections = [];
-    var currSection = {};
-    rawData.data.filter(function(task) {
+
+  activeTasks: function(rawData) {
+    return rawData.data.filter(function(task) {
       // Completely ignore empty or completed
       return !task.completed && task.name != '';
-    }).forEach(function(task) {
-      if (task.name[task.name.length-1] == ':') {
-        // this is a section label
-        if (currSection.name) sections.push(currSection);
-        currSection = {
-          id: task.id,
-          name: task.name,
-          tasks: []
-        };
-      } else { 
-        // this is a regular task
-        currSection.tasks.push(task);
-        task.tags.forEach(function(tag) {
-          tags[tag.id] = tag;
-        });
-      }
-    });
-    // TODO: write this like a real engineer
-    sections.push(currSection);
-    
-    
-    return {
-      sections: sections,
-      tags: tags
-    };
+    })
   },
-  
+
   handleBlur: function(e) {
     var raw = e.target.value;
     var data;
@@ -44,37 +17,38 @@ var InputArea = React.createClass({
       data = JSON.parse(raw);
     } catch (e) { }
     if (data != undefined) {
-      data = this.tasksBySection(data);
+      data = this.activeTasks(data);
       this.props.handleDataChanged(data);
     }
-    
+
     this.setState({
       inputExpanded: false
     });
   },
-  
+
   handleFocus: function(e) {
     e.target.select();
     this.setState({
       inputExpanded: true
     });
   },
-  
+
   render: function() {
     var val = '';
     if (typeof devData != 'undefined') {
       val = JSON.stringify(devData);
     }
     return (
-      <textarea 
+      <textarea
         placeholder="Copy and paste JSON here"
-        onBlur={this.handleBlur} 
+        onBlur={this.handleBlur}
         onFocus={this.handleFocus}
         rows={this.state.inputExpanded ? 10 : 1}
         defaultValue={val}
+        className="hidden-print"
         >
       </textarea>
-      
+
     );
   }
 });

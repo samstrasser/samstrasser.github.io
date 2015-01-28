@@ -4,7 +4,8 @@ module.exports = function(grunt) {
     targethtml: {
       dist: {
         files: {
-          'index.html': 'index.dev.html'
+          'index.html': 'index.dev.html',
+          'print.html': 'print.dev.html'
         }
       }
     },
@@ -19,7 +20,7 @@ module.exports = function(grunt) {
     },
     watch: {
       devindex: {
-        files: 'index.dev.html',
+        files: '*.dev.html',
         tasks: ['targethtml'],
       },
       react: {
@@ -28,11 +29,11 @@ module.exports = function(grunt) {
       }
     },
   });
-  
+
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-targethtml');
   grunt.loadNpmTasks('grunt-react');
-  
+
   grunt.registerTask('default', ['targethtml','react','watch']);
-  
+
 };

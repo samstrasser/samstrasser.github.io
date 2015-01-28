@@ -36,9 +36,33 @@ textarea {
 .sk-spinner-wave.sk-spinner {
   width:300px;
 }
-  
+
 .sk-spinner-wave.sk-spinner div {
   margin-left: 4px;
   margin-right: 4px;
   background-color: lightgray;
+}
+
+
+ul, ol {
+  list-style-type: none;
+  padding:0;
+}
+
+.printable {
+  font-size:16px;
+  padding-bottom:4px;
+}
+
+li.printable.task:before {
+  -webkit-print-color-adjust:exact;
+  color:lightgray;
+  content: "\2610";
+  margin-left:5px;
+  margin-right:5px;
+}
+
+.printable.section {
+  margin-top: .5em;
+  text-decoration:underline;
 }
