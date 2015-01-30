@@ -31,8 +31,26 @@ var PrintApp = React.createClass({displayName: "PrintApp",
 });
 
 var PrintableTasks = React.createClass({displayName: "PrintableTasks",
+  getInitialState: function() {
+    return {
+      hiddenTasks: {}
+    };
+  },
+
+  handleDelete: function(taskId) {
+    var hidden = this.state.hiddenTasks;
+    hidden[taskId] = true;
+    this.setState({
+      hiddenTasks: hidden
+    });
+  },
+
   render: function() {
     var tasks = this.props.tasks;
+    tasks = tasks.filter(function(task) {
+      return this.state.hiddenTasks[task.id] !== true;
+    }.bind(this));
+
     return (
       React.createElement("ol", null, 
         tasks.map(function(task) {
@@ -45,10 +63,14 @@ var PrintableTasks = React.createClass({displayName: "PrintableTasks",
 
           return (
             React.createElement("li", {key: task.id, contentEditable: "true", className: classes}, 
-              task.name
+              task.name, "  ", 
+              React.createElement("button", {type: "button", className: "hidden-print close", 
+                onClick: this.handleDelete.bind(null, task.id)
+                }, 
+                "×")
             )
           )
-        })
+        }.bind(this))
       )
     )
   }

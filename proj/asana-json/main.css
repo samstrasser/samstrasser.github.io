@@ -53,6 +53,9 @@ ul, ol {
   font-size:16px;
   padding-bottom:4px;
 }
+.printable:hover {
+  background-color:#ddd;
+}
 
 li.printable.task:before {
   -webkit-print-color-adjust:exact;
