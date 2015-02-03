@@ -1,8 +1,12 @@
 var App = React.createClass({
   render: function() {
-    return <h1>Hello Wufoo</h1>
+    return (
+      <div>
+        <h1>Hello Wufoo</h1>
+        <FileInput />
+      </div>
+    );
   }
-
 });
 
 
