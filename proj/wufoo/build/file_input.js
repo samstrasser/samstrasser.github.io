@@ -5,24 +5,22 @@ var FileInput = React.createClass({displayName: "FileInput",
 
     var files = evt.dataTransfer.files;
     var file = files[0];
-    window.dbgFile = file;
-    var reader = new FileReader();
 
-    reader.onload = function(e) {
-      this.handleRawCSV(e.target.result);
-    }
-   reader.readAsText(file);
+    var results = Papa.parse(file, {
+      complete: function(results, f) {
+        this.handleCSV(results);
+      }
+    });
   },
 
-  handleRawCSV: function(string) {
-
+  handleCSV: function(string) {
+    this.props.handleData(string);
   },
 
   handleDragOver: function(evt) {
     evt.stopPropagation();
     evt.preventDefault();
 
-    // Explicitly show this is a copy.
     evt.dataTransfer.dropEffect = 'copy';
   },
 
@@ -33,6 +31,10 @@ var FileInput = React.createClass({displayName: "FileInput",
   },
 
   render: function() {
+    var val = '';
+    if (typeof devData != 'undefined') {
+      this.handleCSV(devData);
+    }
     return (
       React.createElement("div", null, "Drop files here")
     );

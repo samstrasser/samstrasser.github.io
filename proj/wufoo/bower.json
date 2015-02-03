@@ -15,6 +15,7 @@
   "dependencies": {
     "react": "~0.12.2",
     "normalize.css": "~3.0.2",
-    "bootstrap": "~3.3.1"
+    "bootstrap": "~3.3.1",
+    "papaparse": "~4.1.0"
   }
 }
