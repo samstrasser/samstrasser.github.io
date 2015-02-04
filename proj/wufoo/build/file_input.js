@@ -26,6 +26,9 @@ var FileInput = React.createClass({displayName: "FileInput",
 
   componentDidMount: function() {
     var dropZone = this.getDOMNode();
+
+    // TODO: should unsubscribe at some point
+
     dropZone.addEventListener('dragover', this.handleDragOver, false);
     dropZone.addEventListener('drop', this.handleFileSelect, false);
   },
@@ -36,7 +39,7 @@ var FileInput = React.createClass({displayName: "FileInput",
       this.handleCSV(devData);
     }
     return (
-      React.createElement("div", null, "Drop files here")
+      React.createElement("div", {className: "dropTarget"}, "Drop files here")
     );
   }
 

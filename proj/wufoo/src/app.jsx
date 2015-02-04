@@ -6,8 +6,8 @@ var App = React.createClass({
   render: function() {
     return (
       <div>
-        <h1>Hello Wufoo</h1>
-        <FileInput handleData={this.handleData} />
+        <FileInput
+          handleData={this.handleData} />
       </div>
     );
   }

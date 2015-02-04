@@ -1,0 +1,8 @@
+.dropTarget {
+  float:right;
+  height:200px;
+  width:200px;
+  border:thin dotted gray;
+  margin:2em;
+  text-align:center;
+}
