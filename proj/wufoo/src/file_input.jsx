@@ -27,10 +27,12 @@ var FileInput = React.createClass({
   componentDidMount: function() {
     var dropZone = this.getDOMNode();
 
-    // TODO: should unsubscribe at some point
-
     dropZone.addEventListener('dragover', this.handleDragOver, false);
     dropZone.addEventListener('drop', this.handleFileSelect, false);
+  },
+
+  componentWillUnmount: function() {
+    // TODO: should unsubscribe at some point
   },
 
   render: function() {
