@@ -1,11 +1,11 @@
 {
-  "name": "TODO__name",
+  "name": "TodoName",
   "version": "0.0.1",
   "homepage": "https://samstrasser.github.io",
   "authors": [
     "Sam Strasser <sam.strasser@gmail.com>"
   ],
-  "description": "TODO-description",
+  "description": "TodoDescription",
   "license": "MIT",
   "private": true,
   "ignore": [
