@@ -87,7 +87,8 @@ var PrintableTasks = React.createClass({
               <button type="button" className="hidden-print close"
                 onClick={this.toggleNewPage.bind(null, task.id)}
                 >
-                p</button>
+                <span className="glyphicon glyphicon-duplicate"></span>
+              </button>
             </li>
           )
         }.bind(this))}

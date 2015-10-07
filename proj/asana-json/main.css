@@ -3,8 +3,11 @@ body {
 }
 
 .new-page {
-  border-top:thin dotted gray;
   page-break-before: always;
+
+  /* show the page break visually */
+  margin-top:1em;
+  border-top: thin dotted gray;
 }
 
 .nav {
