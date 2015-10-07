@@ -33,8 +33,18 @@ var PrintApp = React.createClass({displayName: "PrintApp",
 var PrintableTasks = React.createClass({displayName: "PrintableTasks",
   getInitialState: function() {
     return {
-      hiddenTasks: {}
+      hiddenTasks: {},
+      newPagesTasks: {}
     };
+  },
+
+  toggleNewPage: function(taskId) {
+    var newPages = this.state.newPagesTasks;
+    newPages[taskId] = newPages[taskId] !== true;
+    this.setState({
+      newPagesTasks: newPages
+    });
+
   },
 
   handleDelete: function(taskId) {
@@ -61,13 +71,23 @@ var PrintableTasks = React.createClass({displayName: "PrintableTasks",
             classes += 'task';
           }
 
+          var newPage = this.state.newPagesTasks[task.id] === true;
+          if (newPage) {
+            classes += ' new-page';
+          }
+
+
           return (
             React.createElement("li", {key: task.id, contentEditable: "true", className: classes}, 
               task.name, "  ", 
               React.createElement("button", {type: "button", className: "hidden-print close", 
                 onClick: this.handleDelete.bind(null, task.id)
                 }, 
-                "×")
+                "×"), 
+              React.createElement("button", {type: "button", className: "hidden-print close", 
+                onClick: this.toggleNewPage.bind(null, task.id)
+                }, 
+                "p")
             )
           )
         }.bind(this))

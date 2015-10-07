@@ -2,6 +2,11 @@ body {
   margin:1em;
 }
 
+.new-page {
+  border-top:thin dotted gray;
+  page-break-before: always;
+}
+
 .nav {
   position:fixed;
   right: 16px;

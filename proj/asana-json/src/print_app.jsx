@@ -33,8 +33,18 @@ var PrintApp = React.createClass({
 var PrintableTasks = React.createClass({
   getInitialState: function() {
     return {
-      hiddenTasks: {}
+      hiddenTasks: {},
+      newPagesTasks: {}
     };
+  },
+
+  toggleNewPage: function(taskId) {
+    var newPages = this.state.newPagesTasks;
+    newPages[taskId] = newPages[taskId] !== true;
+    this.setState({
+      newPagesTasks: newPages
+    });
+
   },
 
   handleDelete: function(taskId) {
@@ -61,6 +71,12 @@ var PrintableTasks = React.createClass({
             classes += 'task';
           }
 
+          var newPage = this.state.newPagesTasks[task.id] === true;
+          if (newPage) {
+            classes += ' new-page';
+          }
+
+
           return (
             <li key={task.id} contentEditable="true" className={classes}>
               {task.name} &nbsp;
@@ -68,6 +84,10 @@ var PrintableTasks = React.createClass({
                 onClick={this.handleDelete.bind(null, task.id)}
                 >
                 &times;</button>
+              <button type="button" className="hidden-print close"
+                onClick={this.toggleNewPage.bind(null, task.id)}
+                >
+                p</button>
             </li>
           )
         }.bind(this))}
