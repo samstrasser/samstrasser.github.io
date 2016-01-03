@@ -1,0 +1,30 @@
+body {
+  margin-top:1em;
+  font-size:6pt;
+}
+
+table {
+  float: left;
+  width:45%;
+  table-layout: fixed;
+  margin-left:5%;
+}
+
+td {
+  border:thin solid #eee;
+  border-top:thin solid gray;
+  border-bottom:thin solid gray;
+  padding:2px;
+
+  vertical-align:top;
+  color:lightgray !important;
+  -webkit-print-color-adjust: exact;
+  width:auto;
+  height:34px;
+}
+
+td.first-of-month {
+  color:gray !important;
+  -webkit-print-color-adjust: exact;
+
+}
