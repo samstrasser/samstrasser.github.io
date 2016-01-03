@@ -1,0 +1,20 @@
+{
+  "name": "Printable Calendar",
+  "version": "0.0.1",
+  "homepage": "https://samstrasser.github.io",
+  "authors": [
+    "Sam Strasser <sam.strasser@gmail.com>"
+  ],
+  "description": "Printable Calendar",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "bower_components"
+  ],
+  "dependencies": {
+    "react": "~0.12.2",
+    "normalize.css": "~3.0.2",
+    "bootstrap": "~3.3.5"
+  }
+}
