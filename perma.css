@@ -1,0 +1,21 @@
+    #transform-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 8px 16px;
+      font-size: 12px;
+      color: #999;
+      background: transparent;
+      border: 1px solid rgba(153, 153, 153, 0.3);
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s ease;
+      opacity: 0.6;
+    }
+
+    #transform-btn:hover {
+      opacity: 1;
+      color: #666;
+      border-color: rgba(102, 102, 102, 0.5);
+    }
