@@ -6,9 +6,9 @@ const styles = [
   'garden.css'
 ];
 
-const PAGE_LOAD_DELAY_MS = 30 * 1000;   // Delay before auto-transforming
+const PAGE_LOAD_DELAY_MS = 60 * 1000;   // Delay before auto-transforming
 const TRANSFORM_DELAY_MS = 1 * 1000;    // Delay before each countdown starts
-const COUNTDOWN_DURATION_SECONDS = 10;
+const COUNTDOWN_DURATION_SECONDS = 15;
 
 let countdownInterval;
 let transformTimeout;
