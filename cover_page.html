@@ -38,6 +38,7 @@
             const titleParam = urlParams.get('title');
             if (titleParam) {
                 document.querySelector('h1').textContent = titleParam;
+                document.title = titleParam + ' - Cover Page';
             }
         </script>
     </body>
