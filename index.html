@@ -1,54 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sam Strasser - Fractional CPTO for Startups</title>
-  <link rel="stylesheet" href="perma.css">
-  <link rel="stylesheet" href="style/main.css" id="theme-css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sam Strasser</title>
+  <link id="theme" rel="stylesheet" href="style/light.css">
+  <script>
+    if (new URLSearchParams(location.search).get('mode') === 'dark')
+      document.getElementById('theme').href = 'style/dark.css';
+  </script>
 </head>
 <body>
-  <section class="hero">
-    <h1>
-      <a href="https://www.linkedin.com/in/sam-strasser">I am</a> a <em>fractional CPTO</em> for <em>seed to series B startups</em> who are trying to:
-    </h1>
-    <div class="hero-list">
-      <div class="hero-list-item">find product-market fit</div>
-      <div class="hero-list-item">handle rapid growth</div>
-      <div class="hero-list-item">move faster</div>
+
+  <div class="about">
+    <img class="photo" src="img/headshot.jpg" alt="Sam Strasser">
+    <div class="bio">
+      <p class="name">Sam Strasser</p>
+      <p class="blurb">I coach startup execs (CEO / CTO / CPO) on their engineering, product, design and data teams. Sometimes I pinch-hit as the leader of those teams until I can help get the right team in place. I've been leading enginering teams since 2012 and I've been building ever since I can remember. More on my <a href="https://www.linkedin.com/in/sam-strasser/">LinkedIn</a></p>
+      
     </div>
-    <a href="mailto:inquire@samstrasser.com" class="cta-button">Interested? Let's Chat</a>
-  </section>
+  </div>
 
-  <button id="transform-btn">transform</button>
+  <hr>
+  <h1>Startup Advising</h1>
 
-  <section class="details">
+  <h2>You should consider working with me if</h2>
+      <ol>
+        <li>
+          <details>
+            <summary>You want your product and engineering teams to build faster</summary>
+            <p>Do you miss the good ol' days when, all in a single day, you talked to a customer, had an idea, told someone, it got built, and then that customer and hundreds of others told you they loved it? Do you wonder why, now that you're spending 10x (or 1,000x) more on EPD, you just can't seem to build like that anymore? Lots of people will tell you that it's inevitable as you scale and there is no way around it, but I disagree. I've been there many times and I've helped many companies out of that pit. It's not as hard as people make it out to be!</p>
+          </details>
+        </li>
+        <li>
+          <details>
+            <summary>You need help figuring out EPD hiring</summary>
+            <p>Do you feel like you're supposed to hire a VP of Engineering but you're not really sure why, or what kind, or when? Do you waffle between wanting to elevate your founding engineer and doubting whether they're a good fit to lead the team? Do you wonder whether you really need all these engineers, especially given LLMs?</p>
+          </details>
+        </li>
+        <li>
+          <details>
+            <summary>You want stability through a transition in EPD leadership</summary>
+            <p>Do you need to replace your CTO / VPE / CPO / Head of Product but you are hesitant because you know backfilling will be tough? Or perhaps they've told you they'd like to leave and you need to figure out a short-term plan? Do you want to delay thinking about an engineering or product leader for a little while as you focus on other priorities in the business?</p>
+          </details>
+        </li>
+      </ol>
 
-    <div class="cards-container">
-      <div class="card">
-        <h2>Does this sound like you?</h2>
-        <ul>
-          <li>You think you found PMF but you're not quite sure.</li>
-          <li>You found PMF! You want to build product #2.</li>
-          <li>You can see the future and you must make it a reality.</li>
-        </ul>
-      </div>
+      <h2>What I Do (A Menu)</h2>
+      <ul>
+        <li>Manage or coach your senior-most engineering or product leaders</li>
+        <li>Join your exec team to represent product, engineering or both</li>
+        <li>Design hiring loops to find the right-fit VP / Director of Engineering / Product / Data</li>
+        <li>...and interview candidates for those roles (usually in the later rounds)</li>
+        <li>Set the product roadmap, aligned to company strategy</li>
+        <li>Define your product KPIs and other product metrics</li>
+        <li>Run your weekly planning or other product ceremonies</li>
+        <li>Stabilize your platform if it is not reliable or struggling as you've scaled</li>
+        <li>Establish or improve collaboration with sales, marketing, customer success, ops and other cross-functional teams</li>
+        <li>Engage with your board on technical strategy and tech organization strategy and planning</li>
+      </ul>
+      <p>Not seeing something you'd like me to do? Just ask! Think of me as an EPD jack-of-all-trades.</p>
 
-      <div class="card">
-        <h2>Or maybe this?</h2>
-        <ul>
-          <li>Your founding engineer needs help stepping into Head of Engineering.</li>
-          <li>You're not moving as fast as you used to, back in the day.</li>
-          <li>Your platform is struggling to keep up with your scale, cracking at the edges or maybe falling over completely.</li>
-        </ul>
-      </div>
-    </div>
+      <h2>I work in three phases:</h2>
+      <ol>
+        <li>Diagnose (and stabilize, if necessary)</li>
+        <li>Decide what to tackle, and then tackle it</li>
+        <li>Downshift (over time)</li>
+      </ol>
 
-    <p>I love helping founders bring their vision to life.</p>
-    <a href="mailto:inquire@samstrasser.com" class="cta-button">Let's Chat</a>
-  </section>
+      <h2>Interested? <a href="mailto:inquire@samstrasser.com">Email me</a> and let's chat!</h2>
+      <p>Honestly I love helping founders figure out how to bring their vision to life so just email me and we'll find some time to chat.</p>
 
-  <script src="main.js"></script>
 </body>
 </html>
