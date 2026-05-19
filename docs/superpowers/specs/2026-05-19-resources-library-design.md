@@ -54,7 +54,7 @@ A public `/resources/` section on samstrasser.com for documents and templates Sa
 
 ## Navigation
 
-A "Resources & Templates" link is added to the bottom of `index.html`, below a `<hr>`, consistent with the existing no-nav-bar site style.
+No link from `index.html`. The resources section is intentionally unlisted — Sam shares deep links directly with clients. The pages are public but not discoverable from the main site.
 
 ## Styling
 
