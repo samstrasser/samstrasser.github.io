@@ -21,17 +21,14 @@
     var params = new URLSearchParams(location.search);
     var docName = params.get('doc');
 
-    if (docName && !/^[a-z0-9_-]+$/i.test(docName)) {
-      document.getElementById('doc-content').textContent = 'Invalid document name.';
-      docName = null;
-    }
-
     function esc(s) {
       return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
     }
 
     if (!docName) {
       document.getElementById('doc-content').textContent = 'No document specified.';
+    } else if (!/^[a-z0-9_-]+$/i.test(docName)) {
+      document.getElementById('doc-content').textContent = 'Invalid document name.';
     } else {
       var mdPath = 'docs/' + docName + '.md';
       fetch(mdPath)
@@ -51,7 +48,7 @@
             '<h1>' + esc(title) + '</h1>' +
             '<div class="resource-actions">' +
               '<button class="btn" id="copy-btn">Copy Markdown</button>' +
-              '<a class="btn" href="' + mdPath + '" download="' + docName + '.md">Download</a>' +
+              '<a class="btn" href="' + esc(mdPath) + '" download="' + esc(docName) + '.md">Download</a>' +
               '<a class="btn btn-primary" href="' + googleDocsUrl + '" target="_blank" rel="noopener">Open in Google Docs</a>' +
             '</div>';
 
