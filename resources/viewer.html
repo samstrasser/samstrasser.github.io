@@ -5,9 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Resources — Sam Strasser</title>
   <link id="theme" rel="stylesheet" href="/style/light.css">
+  <link rel="stylesheet" href="/resources/style.css">
   <script>
-    if (new URLSearchParams(location.search).get('mode') === 'dark')
+    if (new URLSearchParams(location.search).get('mode') === 'dark') {
       document.getElementById('theme').href = '/style/dark.css';
+      document.documentElement.classList.add('dark');
+    }
   </script>
 </head>
 <body>
