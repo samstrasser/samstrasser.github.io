@@ -41,15 +41,11 @@
           var title = titleMatch ? titleMatch[1] : docName;
           document.title = title + ' — Sam Strasser';
 
-          var absUrl = location.origin + '/resources/' + mdPath;
-          var googleDocsUrl = 'https://docs.google.com/document/create?usp=sharing&url=' + encodeURIComponent(absUrl);
-
           document.getElementById('doc-header').innerHTML =
             '<h1>' + esc(title) + '</h1>' +
             '<div class="resource-actions">' +
               '<button class="btn" id="copy-btn">Copy Markdown</button>' +
               '<a class="btn" href="' + esc(mdPath) + '" download="' + esc(docName) + '.md">Download</a>' +
-              '<a class="btn btn-primary" href="' + googleDocsUrl + '" target="_blank" rel="noopener">Open in Google Docs</a>' +
             '</div>';
 
           document.getElementById('copy-btn').addEventListener('click', function() {
