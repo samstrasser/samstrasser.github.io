@@ -21,6 +21,15 @@
     var params = new URLSearchParams(location.search);
     var docName = params.get('doc');
 
+    if (docName && !/^[a-z0-9_-]+$/i.test(docName)) {
+      document.getElementById('doc-content').textContent = 'Invalid document name.';
+      docName = null;
+    }
+
+    function esc(s) {
+      return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
     if (!docName) {
       document.getElementById('doc-content').textContent = 'No document specified.';
     } else {
@@ -39,7 +48,7 @@
           var googleDocsUrl = 'https://docs.google.com/document/create?usp=sharing&url=' + encodeURIComponent(absUrl);
 
           document.getElementById('doc-header').innerHTML =
-            '<h1>' + title + '</h1>' +
+            '<h1>' + esc(title) + '</h1>' +
             '<div class="resource-actions">' +
               '<button class="btn" id="copy-btn">Copy Markdown</button>' +
               '<a class="btn" href="' + mdPath + '" download="' + docName + '.md">Download</a>' +
@@ -50,6 +59,10 @@
             navigator.clipboard.writeText(markdown).then(function() {
               var btn = document.getElementById('copy-btn');
               btn.textContent = 'Copied!';
+              setTimeout(function() { btn.textContent = 'Copy Markdown'; }, 2000);
+            }).catch(function() {
+              var btn = document.getElementById('copy-btn');
+              btn.textContent = 'Copy failed';
               setTimeout(function() { btn.textContent = 'Copy Markdown'; }, 2000);
             });
           });
