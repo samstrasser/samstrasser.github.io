@@ -4,27 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Resources — Sam Strasser</title>
-  <link id="theme" rel="stylesheet" href="/style/light.css">
-  <link rel="stylesheet" href="/resources/style.css">
-  <script>
-    if (new URLSearchParams(location.search).get('mode') === 'dark') {
-      document.getElementById('theme').href = '/style/dark.css';
-      document.documentElement.classList.add('dark');
-    }
-  </script>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <h1>Resources</h1>
   <p>Documents and templates I commonly share with clients.</p>
 
-  <div class="resource-row">
-    <div class="resource-row-header">
-      <a class="resource-title" href="viewer.html?doc=an-example">Example Doc</a>
-      <span class="resource-badge">Template</span>
-    </div>
-    <p class="resource-desc">An example of what's possible</p>
-    <p class="resource-hints">View · Copy · Download</p>
-  </div>
+  <ul>
+    <li><a class="resource-title" href="viewer.html?doc=an-example">Example Doc</a></li>
+  </ul>
 
 </body>
 </html>

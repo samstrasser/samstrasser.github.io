@@ -1,17 +1,62 @@
-/* Resource index rows */
-.resource-row {
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  padding: 14px 16px;
-  margin-bottom: 12px;
-  background: #fff;
+body {
+  font-family: Georgia, serif;
+  max-width: 680px;
+  margin: 60px auto;
+  padding: 0 20px;
+  color: #222;
+  line-height: 1.6;
 }
-.resource-row-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 10px;
+
+h1 {
+  font-size: 1.4rem;
+  margin: 1em 0 0.5em;
 }
+h2 {
+  margin-top: 2em;
+  font-size: 1.2rem;
+}
+h1 + h2 {
+  margin-top: 0.5em;
+}
+h2:first-child {
+  margin-top: 0;
+}
+ol, ul {
+  padding-left: 1.4em;
+}
+li {
+  margin-bottom: 0.8em;
+}
+li > p {
+  margin: 0.2em 0 0;
+  color: #444;
+}
+details > summary {
+  cursor: pointer;
+  list-style: none;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}
+details > summary::after {
+  content: ' +';
+  font-weight: normal;
+  color: #888;
+}
+details[open] > summary::after {
+  content: ' −';
+}
+details > p {
+  margin: 0.8em 0 0 1.5em;
+  color: #444;
+}
+a {
+  color: #222;
+}
+@media (max-width: 480px) {
+  body { margin: 24px auto; }
+}
+
 .resource-title {
   font-size: 1rem;
   font-weight: 600;
@@ -19,25 +64,6 @@
   text-decoration: none;
 }
 .resource-title:hover { text-decoration: underline; }
-.resource-badge {
-  font-size: 0.7rem;
-  background: #f0f0f0;
-  color: #666;
-  padding: 2px 8px;
-  border-radius: 3px;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.resource-desc {
-  margin: 6px 0 6px;
-  color: #555;
-  font-size: 0.9rem;
-}
-.resource-hints {
-  font-size: 0.75rem;
-  color: #999;
-  margin: 0;
-}
 /* Viewer */
 .resource-back { margin-bottom: 1.5em; }
 .resource-header {
@@ -70,19 +96,3 @@
   line-height: 1.4;
 }
 .btn:hover { background: #f5f5f5; }
-.btn-primary {
-  border-color: #4285f4;
-  background: #4285f4;
-  color: #fff;
-}
-.btn-primary:hover { background: #3367d6; border-color: #3367d6; }
-
-/* Dark mode */
-html.dark .resource-row { border-color: #333; background: #1a1a1a; }
-html.dark .resource-title { color: #f0ece4; }
-html.dark .resource-badge { background: #2a2a2a; color: #908880; }
-html.dark .resource-desc { color: #c8c0b4; }
-html.dark .resource-hints { color: #888; }
-html.dark .resource-header { border-bottom-color: #333; }
-html.dark .btn { border-color: #444; background: transparent; color: #c8c0b4; }
-html.dark .btn:hover { background: #1a1a1a; }
