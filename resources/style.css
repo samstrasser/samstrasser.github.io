@@ -57,13 +57,6 @@ a {
   body { margin: 24px auto; }
 }
 
-.resource-title {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #1a1a1a;
-  text-decoration: none;
-}
-.resource-title:hover { text-decoration: underline; }
 /* Viewer */
 .resource-back { margin-bottom: 1.5em; }
 .resource-header {
