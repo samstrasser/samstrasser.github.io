@@ -16,7 +16,6 @@
 <body>
   <p class="resource-back"><a href="/resources/">← Resources</a></p>
   <div id="doc-header"></div>
-  <hr>
   <div id="doc-content"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/marked@9/marked.min.js"></script>
@@ -45,10 +44,12 @@
           document.title = title + ' — Sam Strasser';
 
           document.getElementById('doc-header').innerHTML =
-            '<h1>' + esc(title) + '</h1>' +
-            '<div class="resource-actions">' +
-              '<button class="btn" id="copy-btn">Copy Markdown</button>' +
-              '<a class="btn" href="' + esc(mdPath) + '" download="' + esc(docName) + '.md">Download</a>' +
+            '<div class="resource-header">' +
+              '<h1>' + esc(title) + '</h1>' +
+              '<div class="resource-actions">' +
+                '<button class="btn" id="copy-btn">Copy Markdown</button>' +
+                '<a class="btn" href="' + esc(mdPath) + '" download="' + esc(docName) + '.md">Download</a>' +
+              '</div>' +
             '</div>';
 
           document.getElementById('copy-btn').addEventListener('click', function() {
