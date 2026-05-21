@@ -57,7 +57,8 @@
             });
           });
 
-          document.getElementById('doc-content').innerHTML = marked.parse(markdown);
+          var body = titleMatch ? markdown.replace(/^#\s+.+\n?/, '') : markdown;
+          document.getElementById('doc-content').innerHTML = marked.parse(body);
         })
         .catch(function() {
           document.getElementById('doc-content').textContent = 'Document not found.';
