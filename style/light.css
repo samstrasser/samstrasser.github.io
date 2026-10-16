@@ -81,6 +81,22 @@ details > p {
 a {
   color: #222;
 }
+h1[id], h2[id] {
+  scroll-margin-top: 1em;
+}
+.anchor {
+  color: #888;
+  font-weight: normal;
+  text-decoration: none;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+h1:hover .anchor, h2:hover .anchor, .anchor:focus-visible, :target > .anchor {
+  opacity: 1;
+}
+@media (hover: none) {
+  .anchor { opacity: 0.4; }
+}
 @media (max-width: 480px) {
   body { margin: 24px auto; }
   .about { flex-direction: column; align-items: center; }
